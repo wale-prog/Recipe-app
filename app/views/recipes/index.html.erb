@@ -1,13 +1,14 @@
 <h2>This is the recipe index page</h2>
-
 <div class='container'>
-  <div style='display:flex;border:2px solid black' class= 'container row'>
+  <div style='display:flex;border:2px solid black;flex-direction:column' class= 'container row'>
     <% @recipes.each_with_index do |recipe, index| %>
-    <div class= 'col-3'>
-      <h3>Recipe <%= index + 1%>: <%= recipe.name %> </h3>
-      <%= button_to 'Remove', "/users/#{@user.id}/recipes/#{recipe.id}", method: :delete %>
+    <div style='display:flex'>
+      <div class= 'col-3'>
+        <h3>Recipe <%= index + 1%>: <%= recipe.name %> </h3>
+        <%= button_to 'Remove', "/users/#{@user.id}/recipes/#{recipe.id}", method: :delete %>
+      </div>
+      <p class='col'> <%= recipe.description %> </p>
     </div>
-    <p class='col'> <%= recipe.description %> </p>
     <% end %>
   </div>  
 </div>
