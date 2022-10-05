@@ -12,6 +12,7 @@ class FoodsController < ApplicationController
   # GET /foods/new
   def new
     @food = Food.new
+    @user = User.find(params[:user_id])
   end
 
   # POST /foods or /foods.json

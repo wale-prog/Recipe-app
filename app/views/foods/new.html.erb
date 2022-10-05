@@ -1,6 +1,6 @@
 <section class="new-food">
   <h2 class="title text-center">Add New Food</h2>
- <%= form_for @food do |form| %>
+ <%= form_with model: Food, url: user_foods_path(current_user) do |form| %>
      <div class="d-flex flex-column align-items-center">
  <div class= "d-flex flex-column align-items-center w-75 mb-3">
       <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "form-control mb-3", Placeholder: "Name"%>
