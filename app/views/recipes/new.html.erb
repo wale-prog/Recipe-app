@@ -1,0 +1,27 @@
+
+<%# <p><%= link_to 'Back to posts', user_post_path(current_user.id, @post.id) %></p> #%>
+<div class='container'>
+<%= form_with model: Recipe, url: user_recipes_path(@user.id) do |f| %>
+  
+  <div class="field form-group " >
+    <%= f.text_field :Name, class:"form-control", autofocus: true, placeholder: "Name of the recipe" %><br/>
+  </div>
+
+  <div class="field form-group " >
+    <%= f.text_field :preparation_time, class:"form-control", placeholder: "Preparation time" %><br/>
+  </div>
+
+  <div class="field form-group " >
+    <%= f.text_field :cooking_time, class:"form-control", placeholder: "Cooking time" %><br/>
+  </div>
+
+  <div class="field form-group " >
+    <%= f.text_area :description, class:"form-control", placeholder: "Description" %><br/>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add recipe", class: 'btn btn-secondary' %>
+  </div>  
+<% end %>
+</div>
+
