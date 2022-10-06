@@ -4,7 +4,7 @@
   <td><%= food.price %></td>
   <td class="del_btn">
           <div>
-            <%= button_to 'Remove', root_path(food), method: :delete, class: "btn btn-danger" %>
+            <%= button_to 'Remove', user_food_path(current_user, food.id), method: :delete, class: "btn btn-danger" %>
           </div>
       <span>No actions</span>
   </td>
