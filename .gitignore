@@ -25,6 +25,7 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 tmp/development_secret.txt
+log/development.log
 
 /public/assets
 
