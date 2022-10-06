@@ -12,10 +12,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3, maximum: 75 }
 
-  Roles = [ :admin, :default ]
-
-  def is?( requested_role )
-    self.role == requested_role.to_s
+  def is?(requested_role)
+    role == requested_role.to_s
   end
-
 end
