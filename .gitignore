@@ -21,6 +21,7 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 /tmp/cache/
+log/development.log
 
 # Ignore uploaded files in development.
 /storage/*
