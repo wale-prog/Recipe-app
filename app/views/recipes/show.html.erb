@@ -1,1 +1,15 @@
-<h2>This is the recipe show page</h2>
+<div>
+  <%=link_to 'Back to recipes', user_recipes_path(current_user)  %>
+  <h3><%= @recipe.name %></h3>
+  <div class="d-flex justify-space-between">
+    <p class= "flex-fill">Preparation time: <%= @recipe.preparation_time %></p>
+    <div class="form-check form-switch flex-fill">
+      <%= form_with model: Recipe, url: user_recipe_path(current_user.id, @recipe.id), method: :patch do |f| %>
+        <%= f.label :public %>
+        <%= f.check_box :public, onchange:'this.form.submit()',class:"form-check-input", checked:@recipe.public %>      
+      <% end %>
+    </div> 
+  </div><br/>
+  <P>Cooking time: <%= @recipe.cooking_time %></P>
+  
+</div>
