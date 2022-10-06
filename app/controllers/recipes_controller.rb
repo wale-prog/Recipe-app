@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
-    @user = User.find(1)
+    @recipes = Recipe.order('created_at ASC')
+    @user = current_user
   end
 
   def show
@@ -28,6 +28,11 @@ class RecipesController < ApplicationController
     else
       render :index
     end
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    render :show if @recipe.update(recipe_params)
   end
 
   private

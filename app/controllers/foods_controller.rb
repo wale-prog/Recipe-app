@@ -12,7 +12,6 @@ class FoodsController < ApplicationController
   # GET /foods/new
   def new
     @food = Food.new
-    @user = User.find(params[:user_id])
   end
 
   # POST /foods or /foods.json
@@ -23,7 +22,7 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       if @food.save
-        format.html { redirect_to foods_url(@food), notice: 'Food was successfully created.' }
+        format.html { redirect_to new_user_food_path, notice: 'Food was successfully created.' }
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new, status: :unprocessable_entity }

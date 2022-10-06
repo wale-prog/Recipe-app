@@ -12,11 +12,16 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/log/development.log
+
+
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
+/tmp/cache/
+log/development.log
 
 # Ignore uploaded files in development.
 /storage/*
@@ -24,6 +29,8 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
+tmp/development_secret.txt
+log/development.log
 
 /public/assets
 
