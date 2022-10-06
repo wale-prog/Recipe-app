@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.order("created_at ASC")
+    @recipes = Recipe.order('created_at ASC')
     @user = current_user
   end
 
@@ -32,9 +32,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(recipe_params)
-      render :show
-    end
+    render :show if @recipe.update(recipe_params)
   end
 
   private
