@@ -4,7 +4,7 @@
   <div class="d-flex justify-space-between">
     <p class= "flex-fill">Preparation time: <%= @recipe.preparation_time %></p>
     <div class="form-check form-switch flex-fill">
-    <% if cannot? :read, @recipe %>
+    <% if can? :create, @recipe %>
       <%= form_with model: Recipe, url: user_recipe_path(current_user.id, @recipe.id), method: :patch do |f| %>
         <%= f.label :public %>
         <%= f.check_box :public, onchange:'this.form.submit()',class:"form-check-input", checked:@recipe.public %>
@@ -17,6 +17,5 @@
     <% end %>
     </div> 
   </div><br/>
-  <P>Cooking time: <%= @recipe.cooking_time %></P>
-  
+  <P>Cooking time: <%= @recipe.cooking_time %></P>  
 </div>
