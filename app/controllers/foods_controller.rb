@@ -12,7 +12,6 @@ class FoodsController < ApplicationController
   # GET /foods/new
   def new
     @food = Food.new
-    @user = User.find(params[:user_id])
   end
 
   # POST /foods or /foods.json
@@ -23,7 +22,7 @@ class FoodsController < ApplicationController
 
     respond_to do |format|
       if @food.save
-        format.html { redirect_to foods_url(@food), notice: 'Food was successfully created.' }
+        format.html { redirect_to new_user_food_path, notice: 'Food was successfully created.' }
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,12 +33,16 @@ class FoodsController < ApplicationController
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
-    @food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
+    @food = Food.find(params[:id])
+    if @food.destroy
+      redirect_to user_foods_path(current_user)
+    else
+      render :index
     end
+    # respond_to do |format|
+    #   format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
