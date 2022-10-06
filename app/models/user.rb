@@ -11,4 +11,8 @@ class User < ApplicationRecord
   has_many :recipes
 
   validates :name, presence: true, length: { minimum: 3, maximum: 75 }
+
+  def is?(requested_role)
+    role == requested_role.to_s
+  end
 end

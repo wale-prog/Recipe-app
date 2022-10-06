@@ -20,6 +20,11 @@
       <%= f.text_area :description, class:"form-control", placeholder: "Description" %><br/>
     </div>
 
+    <div class="form-check form-switch">
+      <%= f.check_box :public, class:"form-check-input", id: "customSwitch1" %>
+      <%= f.label :public, class: "form-check-label" %>
+    </div> <br/>
+
     <div class="actions">
       <%= f.submit "Add recipe", class: 'btn btn-secondary' %>
     </div>  
