@@ -15,8 +15,10 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
       redirect_to user_recipes_path(current_user)
+      flash[:notice] = 'Recipe creates successfully'
     else
       render :new
+      flash[:notice] = 'Recipe was not created'
     end
   end
 
@@ -24,8 +26,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if @recipe.destroy
       redirect_to user_recipes_path(current_user)
+      flash[:notice] = 'Recipe removed successfully'
     else
-      render :index
+      flash[:notice] = 'Recipe was not removed'
     end
   end
 

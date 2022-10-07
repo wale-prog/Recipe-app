@@ -1,6 +1,8 @@
 class Food < ApplicationRecord
   has_many :recipe_foods
   belongs_to :user
+  has_many :recipes, through: :recipe_foods
+
 
   validates :name, presence: true, length: { minimum: 3, maximum: 75 }
   validates :measurement_unit, presence: true, length: { minimum: 1, maximum: 10 }
