@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    render :show if @recipe.update(recipe_params)
+    @recipe.update(recipe_params)
   end
 
   private

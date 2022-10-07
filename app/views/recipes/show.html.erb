@@ -1,5 +1,4 @@
 <div>
-  <%=link_to 'Back to recipes', user_recipes_path(current_user)  %>
   <h3><%= @recipe.name %></h3>
   <div class="d-flex justify-space-between">
     <p class= "flex-fill">Preparation time: <%= @recipe.preparation_time %></p>
@@ -17,13 +16,11 @@
     <% end %>
     </div> 
   </div><br/>
-  <P>Cooking time: <%= @recipe.cooking_time %></P>  
-
-
+  <P>Cooking time: <%= @recipe.cooking_time %></P>
 
   <div class="d-flex justify-content-between">
   <%= link_to "🔙 Back to recipes", user_recipes_path(current_user), class: "btn btn-outline-secondary btn-sm"%>
-  <% if can? :manage, @recipe%>
+  <% if can? :create, @recipe%>
     <button class="btn btn-success" id="addIngredient" data-toggle="modal" data-target="#exampleModal" onclick="(() => {
       document.getElementById('toggleModel').classList.toggle('d-none')
       })()">Add ingredient</button>
@@ -37,29 +34,8 @@
   <div class=" align-items-center">
     <h3 class="p-2">ingredients</h3>
   </div>
-  <div id="shopping-list">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Food</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @foods.each do |food| %>
-        <tr>
-          <% quantity = RecipeFood.joins(:food).where(food_id: food.id).sum('quantity') %>
-          <td><%= food.name %></td>
-          <td><%= quantity %> <%= food.measurement_unit %> </td>
-          <td>$ <%= food.price * quantity %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render 'shared/shopping_list' %>
 </div>
 </div>
-
+  <%= render 'shared/recipe_food_form' %>
 </div>

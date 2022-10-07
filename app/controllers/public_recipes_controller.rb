@@ -4,6 +4,11 @@ class PublicRecipesController < ApplicationController
     @user = current_user
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+    @foods = Food.all
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
     if @recipe.destroy
