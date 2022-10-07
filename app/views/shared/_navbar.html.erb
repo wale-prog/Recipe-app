@@ -20,6 +20,16 @@
             <%= link_to 'Create Food', new_user_food_path(current_user), class: "nav-link" %>  
           </li>
           <li class="nav-item">
+          <%= link_to 'Food', user_foods_path(current_user), class: "nav-link" %>  
+        </li>    
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign In', new_user_session_path, class: "nav-link" %>  
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Create Food', new_user_food_path(current_user), class: "nav-link" %>  
+          </li>
+          <li class="nav-item">
             <%= link_to 'Foods', user_foods_path(current_user), class: "nav-link" %>  
           </li>       
                
