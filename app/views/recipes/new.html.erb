@@ -1,5 +1,5 @@
 <h3>Create a new recipe</h3>
-<p><%= link_to 'Back to recipes', user_recipes_path(current_user.id) %></p>
+<%= link_to 'Back to recipes', user_recipes_path(current_user.id) %>
 <div class='container'>
 
   <%= form_with model: Recipe, url: user_recipes_path(current_user), data: { turbo: false } do |f| %>
@@ -30,5 +30,6 @@
     </div>  
   <% end %>
 </div>
+<%= link_to "Back", :back %>
 
 

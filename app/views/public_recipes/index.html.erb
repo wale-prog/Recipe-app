@@ -3,14 +3,22 @@
     <% @recipes.each_with_index do |recipe, index| %>
     <div style='display:flex;border:2px solid black;margin-top:8px'>
       <div class= 'col-3'>
+      <% if (recipe.public || current_user.id == recipe.user_id) %>
         <h3>Recipe <%= index + 1%>: 
         <%= link_to user_recipe_path(current_user, recipe.id) do  %>
           <%= recipe.name %> </h3>
         <% end %>
-        <%= button_to 'Remove', "/users/#{@user.id}/recipes/#{recipe.id}", method: :delete %>
+      <% else %>
+        <h3>Recipe <%= index + 1%>: <%= recipe.name %> </h3>
+      <% end %>
+        <% if can? :destroy, recipe %>
+          <%= button_to 'Remove', user_public_recipe_path(current_user, recipe.id), method: :delete, class:"btn btn-secondary" %>
+        <% end %>
       </div>
       <p class='col'> <%= recipe.description %> </p>
     </div>
     <% end %>
   </div>  
 </div>
+
+

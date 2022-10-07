@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.order('created_at ASC')
-    @user = current_user
+    @recipes = Recipe.accessible_by(current_ability).order('created_at DESC')
   end
 
   def show
