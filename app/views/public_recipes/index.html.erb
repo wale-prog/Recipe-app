@@ -1,24 +1,21 @@
-<div class='container'>
-  <div style='display:flex;flex-direction:column' class= 'container row'>
-    <% @recipes.each_with_index do |recipe, index| %>
-    <div style='display:flex;border:2px solid black;margin-top:8px'>
-      <div class= 'col-3'>
-      <% if (recipe.public || current_user.id == recipe.user_id) %>
-        <h3>Recipe <%= index + 1%>: 
-        <%= link_to user_recipe_path(current_user, recipe.id) do  %>
-          <%= recipe.name %> </h3>
-        <% end %>
-      <% else %>
-        <h3>Recipe <%= index + 1%>: <%= recipe.name %> </h3>
-      <% end %>
-        <% if can? :destroy, recipe %>
-          <%= button_to 'Remove', user_public_recipe_path(current_user, recipe.id), method: :delete, class:"btn btn-secondary" %>
-        <% end %>
+<div>
+  <% @recipes.each do |recipe| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-center"><%= recipe.name.capitalize %></h5>
+        <div class="d-flex justify-content-between m-2">
+          <div>
+            <p><%= recipe.description %></p>
+            <p class="card-text"><span class="fst-italic">Made by: </span><small class="text-muted"><%= User.find_by(id: recipe.user_id).name %></small></p>
+              <%= link_to "Details", user_public_recipe_path(current_user.id, recipe.id),class: "fst-italic"  %>
+          </div>
+          <div class="form-check form-switch">
+            <% if can? :manage, recipe %>
+              <%= button_to "Destroy", recipe, method: :delete, class: "btn btn-outline-danger btn-sm small-btn"%>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <p class='col'> <%= recipe.description %> </p>
     </div>
-    <% end %>
-  </div>  
+  <% end %>
 </div>
-
-

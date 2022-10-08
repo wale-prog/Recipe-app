@@ -1,0 +1,21 @@
+<div>
+  <% if flash[:notice] %>
+    <p class="alert alert-success" role="alert"><%= notice %> </p>
+  <% end %>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Shopping list</h1>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Amount of food items to buy: <%= @foods.count %> </li>
+      <li class="list-group-item"> Total value of food needed: $ <%= total_price %>  </li>
+    </ul>
+  </div>
+  <div id="shopping-list">
+    <table class="table">     
+      <tbody>
+        <%= render "shared/shopping_list" %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
