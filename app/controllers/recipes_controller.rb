@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, only: %i[index]
+
   def index
     @recipes = Recipe.accessible_by(current_ability).order('created_at DESC')
   end
@@ -9,7 +11,7 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @recipe = Recipe.new
   end
 
   def create

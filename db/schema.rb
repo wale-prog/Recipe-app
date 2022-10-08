@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_07_222409) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_08_080726) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,8 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_222409) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "food_id", null: false
-    t.bigint "recipe_id", null: false
+    t.bigint "recipe_id"
+    t.bigint "food_id"
     t.index ["food_id"], name: "index_recipe_foods_on_food_id"
     t.index ["recipe_id"], name: "index_recipe_foods_on_recipe_id"
   end
@@ -54,19 +54,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_222409) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "role"
+    t.datetime "remember_created_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "foods", "users"
-  add_foreign_key "recipe_foods", "foods"
+  add_foreign_key "recipe_foods", "foods", on_delete: :cascade
   add_foreign_key "recipe_foods", "recipes"
   add_foreign_key "recipes", "users"
 end

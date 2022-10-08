@@ -1,41 +1,49 @@
-<div>
-  <h3><%= @recipe.name %></h3>
-  <div class="d-flex justify-space-between">
+<div >
+  <h3 style="text-align:center"><%= @recipe.name %></h3>
+  <div class="d-flex justify-content-between">
     <p class= "flex-fill">Preparation time: <%= @recipe.preparation_time %></p>
-    <div class="form-check form-switch flex-fill">
+    <div class="form-check form-switch flex-fill justify-item-end">
     <% if can? :create, @recipe %>
-      <%= form_with model: Recipe, url: user_recipe_path(current_user.id, @recipe.id), method: :patch do |f| %>
+      <%= form_with model: Recipe, url: user_recipe_path(current_user.id, @recipe.id) do |f| %>
         <%= f.label :public %>
-        <%= f.check_box :public, onchange:'this.form.submit()',class:"form-check-input", checked:@recipe.public %>
-      <% end %>
-    <% else %>
-      <%= form_with model: Recipe, url: user_recipe_path(current_user.id, @recipe.id), method: :patch do |f| %>
-        <%= f.label :public %>
-        <%= f.check_box :public, disabled: true, onchange:'this.form.submit()',class:"form-check-input", checked:@recipe.public %>
-      <% end %>
+        <%= f.check_box :public,class:"form-check-input", disabled: true, checked:@recipe.public %>
+      <% end %>   
     <% end %>
     </div> 
   </div><br/>
   <P>Cooking time: <%= @recipe.cooking_time %></P>
 
-  <div class="d-flex justify-content-between">
-  <%= link_to "🔙 Back to recipes", user_recipes_path(current_user), class: "btn btn-outline-secondary btn-sm"%>
+  <div>
+
+  <div  class="d-flex justify-content-between" >
+  <%= link_to "Generate shopping list", shopping_lists_path, class: "btn btn-secondary btn-sm"%>
   <% if can? :create, @recipe%>
     <button class="btn btn-success" id="addIngredient" data-toggle="modal" data-target="#exampleModal" onclick="(() => {
       document.getElementById('toggleModel').classList.toggle('d-none')
       })()">Add ingredient</button>
   <% else %>
+    
     <button class="btn btn-success" disabled id="addIngredient" data-toggle="modal" data-target="#exampleModal" onclick="(() => {
       document.getElementById('toggleModel').classList.toggle('d-none')
       })()">Add ingredient</button>
   <% end %>
+  </div>
 </div>
 <div class="border rounded-3 mt-3 p-3 ">
   <div class=" align-items-center">
-    <h3 class="p-2">ingredients</h3>
+    <h3 class="p-2">Ingredients</h3>
   </div>
-  <%= render 'shared/shopping_list' %>
-</div>
-</div>
-  <%= render 'shared/recipe_food_form' %>
+  <div id="shopping-list">
+      <table class="table">       
+        <tbody>
+        <%= render 'shared/shopping_list' %>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <%= render 'shared/recipe_food_form' %> <br/>
+  <div class="container">
+  <%= link_to "🔙 Back to recipes", user_recipes_path(current_user), class: "btn btn-outline-secondary btn-sm"%>
+  </div>
 </div>

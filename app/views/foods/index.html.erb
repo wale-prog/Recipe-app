@@ -13,14 +13,16 @@
       </tr>
     </thead>
     <tbody>
-      <% if !@foods.empty? %>
-        <% @foods.each do |food| %>
-            <%= render 'show', food: food %>
-        <% end %>
-      <% else %>
+      <% if @foods.empty? %>
         <tr>
           <td colspan="4">No items yet.</td>
         </tr>
+      <% else %>
+        <% @foods.each do |food| %>
+          <% if can? :read, food %>
+          <%= render 'show', food: food %>
+          <% end %>
+        <% end %>        
       <% end %>
     </tbody>
   </table>

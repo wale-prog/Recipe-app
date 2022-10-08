@@ -1,10 +1,9 @@
 <h3>Create a new recipe</h3>
-<%= link_to 'Back to recipes', user_recipes_path(current_user.id) %>
-<div class='container'>
+<%= link_to 'Back to recipes', user_recipes_path(current_user.id) %><br/>
 
+<div>
   <%= form_with model: Recipe, url: user_recipes_path(current_user), data: { turbo: false } do |f| %>
     <div class="field form-group " >
-      <%= f.label :name %><br />
       <%= f.text_field :name, class:"form-control", autofocus: true, placeholder: "Name of the recipe", value: '' %><br/>
     </div>
 
@@ -31,5 +30,4 @@
   <% end %>
 </div>
 <%= link_to "Back", :back %>
-
 

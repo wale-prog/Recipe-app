@@ -1,11 +1,11 @@
 class PublicRecipesController < ApplicationController
   def index
-    @recipes = Recipe.order('created_at ASC').where(public: true)
+    @recipes = Recipe.order('created_at DESC').where(public: true)
     @user = current_user
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.order('created_at DESC').where(public: true).find(params[:id])
     @foods = Food.all
   end
 

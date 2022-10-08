@@ -9,7 +9,7 @@
               <%= recipe.name %> </h3>
             <% end %>
             <% if can? :destroy, recipe %>
-              <%= button_to 'Remove', user_recipee(current_user, recipe.id), method: :delete, class:"btn btn-secondary" %>
+              <%= button_to 'Remove', user_recipe_path(current_user, recipe.id), method: :delete, class:"btn btn-secondary" %>
             <% end %>
           </div>
           <p class='col'> <%= recipe.description %> </p>
