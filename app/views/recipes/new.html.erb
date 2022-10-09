@@ -1,0 +1,33 @@
+<h3>Create a new recipe</h3>
+<%= link_to 'Back to recipes', user_recipes_path(current_user.id) %><br/>
+
+<div>
+  <%= form_with model: Recipe, url: user_recipes_path(current_user), data: { turbo: false } do |f| %>
+    <div class="field form-group " >
+      <%= f.text_field :name, class:"form-control", autofocus: true, placeholder: "Name of the recipe", value: '' %><br/>
+    </div>
+
+    <div class="field form-group " >
+      <%= f.text_field :preparation_time, class:"form-control", placeholder: "Preparation time" %><br/>
+    </div>
+
+    <div class="field form-group " >
+      <%= f.text_field :cooking_time, class:"form-control", placeholder: "Cooking time" %><br/>
+    </div>
+
+    <div class="field form-group " >
+      <%= f.text_area :description, class:"form-control", placeholder: "Description" %><br/>
+    </div>
+
+    <div class="form-check form-switch">
+      <%= f.check_box :public, class:"form-check-input", id: "customSwitch1" %>
+      <%= f.label :public, class: "form-check-label" %>
+    </div> <br/>
+
+    <div class="actions">
+      <%= f.submit "Add recipe", class: 'btn btn-secondary' %>
+    </div>  
+  <% end %>
+</div>
+<%= link_to "Back", :back %>
+

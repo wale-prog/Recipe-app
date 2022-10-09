@@ -1,0 +1,10 @@
+  <tbody>
+    <% @foods.each do |food| %>
+    <tr>
+      <td><%=food.name%></td>
+      <td><%=food.measurement_unit%></td>
+      <td>$ <%=food.price%></td>
+      <td><%= link_to 'Modify' %>  <%= link_to 'Remove' %></td>
+    </tr>
+    <% end %>
+  </tbody>

@@ -1,0 +1,27 @@
+<div id="shopping-list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <% quantity = RecipeFood.joins(:food).where(food_id: food.id).sum('quantity') %>
+          <% unless quantity == 0 %>
+            <td><%= food.name %></td>
+            <td><%= quantity %> <%= food.measurement_unit %> </td>
+            <td>$ <%= food.price * quantity %></td>
+            <% if can? :destroy, food %>
+              <td><%= button_to 'Delete', user_food_path(current_user, food.id), method: :delete, class:"btn btn-link" %> </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>

@@ -1,4 +1,7 @@
-class Reciepe_food < ApplicationRecord
-	belongs_to :food
-	belongs_to :recipe
+class RecipeFood < ApplicationRecord
+  belongs_to :food
+  belongs_to :recipe
+
+  validates :quantity, presence: true
+  validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 end

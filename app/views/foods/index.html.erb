@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+<button class="btn btn-primary">
+<%= link_to "Create New food", new_user_food_path(current_user), style: 'color:white' %>
+</button>
+<h1>Foods</h1>
+<div id="foods">
+  <table class="table">     
+    <thead class="table-container">
+      <th scope="col">Foods</th>
+      <th scope="col">Measurement unit(mg)</th>
+      <th scope="col">Unit price</th>
+      <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @foods.empty? %>
+        <tr>
+          <td colspan="4">No items yet.</td>
+        </tr>
+      <% else %>
+        <% @foods.each do |food| %>
+          <% if can? :read, food %>
+          <%= render 'show', food: food %>
+          <% end %>
+        <% end %>        
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
